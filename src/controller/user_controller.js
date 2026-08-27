@@ -16,21 +16,9 @@ import {
 
 export const user_register = async (req, res) => {
   try {
-    const {
-      first_name,
-      last_name,
-      email,
-      password,
-      gender,
-    } = req.body;
+    const { first_name, last_name, email, password, gender, } = req.body;
 
-    if (
-      !first_name ||
-      !last_name ||
-      !email ||
-      !password ||
-      !gender
-    ) {
+    if (!first_name || !last_name || !email || !password || !gender) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
@@ -226,8 +214,8 @@ export const resend_register_otp = async (req, res) => {
     if (
       verification.last_otp_sent_at &&
       Date.now() -
-        verification.last_otp_sent_at.getTime() <
-        60 * 1000
+      verification.last_otp_sent_at.getTime() <
+      60 * 1000
     ) {
       return res.status(429).json({
         success: false,
